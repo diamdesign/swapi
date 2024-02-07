@@ -8,7 +8,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	let allPeople = [];
 	let swapiArray = [];
-	let currentId = 2;
+	let currentId = 11;
+	let orderId = 2;
 
 	async function fetchAllPeople() {
 		allPeople = JSON.parse(localStorage.getItem("SWAPI"));
@@ -97,11 +98,12 @@ document.addEventListener("DOMContentLoaded", function () {
 		list.innerHTML = "";
 		// Accept swapiArray as an argument
 		for (let i = 0; i < swapiArray.length; i++) {
-			const dataId = swapiArray[i].url.match(/\d+$/)[0];
-			console.log(dataId);
+			const dataIdUrl = swapiArray[i].url;
+			const dataIdMatch = dataIdUrl.match(/\/(\d+)\/$/);
+			const dataId = dataIdMatch ? dataIdMatch[1] : null;
 			// Creating the list item with the extracted data-id
 			const listItem = `
-            <div class="list-item" data-id="${dataId}">
+            <div class="list-item" data-order="${i}" data-id="${dataId}">
                 ${swapiArray[i].name}
             </div>`;
 			list.insertAdjacentHTML("beforeend", listItem);
@@ -147,11 +149,24 @@ document.addEventListener("DOMContentLoaded", function () {
 		allItems.forEach((item) => {
 			item.classList.remove("active");
 		});
-		const currentItem = document.querySelector(`.list-item[data-id="${currentId}"]`);
-		if (currentItem) {
-			currentItem.classList.add("active");
-		}
-		getExtra(allPeople[currentId].name, allPeople[currentId].homeworld);
+		const currentItem = document.querySelector(`.list-item[data-id="${clickId}"]`);
+
+		currentItem.classList.add("active");
+		const name = currentItem.textContent.trim();
+		console.log(name);
+		const person = allPeople.find(
+			(item) => item.name.trim().toLowerCase() === name.toLowerCase()
+		);
+		console.log(person);
+		// Extract the last digits from the URL
+
+		const dataIdUrl = person.url;
+		const dataIdMatch = dataIdUrl.match(/\/(\d+)\/$/);
+
+		const dataId = dataIdMatch[1];
+		console.log(dataId);
+
+		getExtra(person.name, person.homeworld);
 	}
 
 	const nextButton = document.querySelector(".nextbtn");
@@ -168,9 +183,9 @@ document.addEventListener("DOMContentLoaded", function () {
 	function nextBtn() {
 		if (currentId < allPeople.length - 1) {
 			// Check if currentId is within the valid range
-			currentId++;
+			orderId++;
 		} else {
-			currentId = 0; // Wrap around to the beginning if currentId exceeds the length of allPeople
+			orderId = 0; // Wrap around to the beginning if currentId exceeds the length of allPeople
 		}
 		setActive(currentId);
 	}
@@ -178,9 +193,9 @@ document.addEventListener("DOMContentLoaded", function () {
 	function prevBtn() {
 		if (currentId > 0) {
 			// Check if currentId is within the valid range
-			currentId--;
+			orderId--;
 		} else {
-			currentId = allPeople.length - 1; // Set currentId to the last index if it's less than 0
+			orderId = allPeople.length - 1; // Set currentId to the last index if it's less than 0
 		}
 		setActive(currentId);
 	}

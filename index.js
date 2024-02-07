@@ -181,22 +181,26 @@ document.addEventListener("DOMContentLoaded", function () {
 	});
 
 	function nextBtn() {
-		if (currentId < allPeople.length - 1) {
-			// Check if currentId is within the valid range
-			orderId++;
-		} else {
-			orderId = 0; // Wrap around to the beginning if currentId exceeds the length of allPeople
+		const activeItem = document.querySelector(".list-item.active");
+		if (activeItem) {
+			const nextItem = activeItem.nextElementSibling;
+			if (nextItem) {
+				setActive(nextItem.dataset.id);
+			} else {
+				setActive(document.querySelector(".list-item:first-child").dataset.id);
+			}
 		}
-		setActive(currentId);
 	}
 
 	function prevBtn() {
-		if (currentId > 0) {
-			// Check if currentId is within the valid range
-			orderId--;
-		} else {
-			orderId = allPeople.length - 1; // Set currentId to the last index if it's less than 0
+		const activeItem = document.querySelector(".list-item.active");
+		if (activeItem) {
+			const prevItem = activeItem.previousElementSibling;
+			if (prevItem) {
+				setActive(prevItem.dataset.id);
+			} else {
+				setActive(document.querySelector(".list-item:last-child").dataset.id);
+			}
 		}
-		setActive(currentId);
 	}
 });

@@ -3,10 +3,69 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Archivo:wght@100;200;300;400;500;600;700;900&family=Bebas+Neue&family=Roboto:wght@100;400;500;700;900&display=swap"
+			rel="stylesheet"
+		/>
 		<link rel="stylesheet" href="style.css" />
-		<title>Star Wars Characters</title>
+		<title>Star Wars Catalog</title>
 	</head>
 	<body>
+		<div class="logo">
+			<h1>STAR</h1>
+			<h1>WARS</h1>
+			<h2>Catalog</h2>
+		</div>
+		<div class="prevbtn"><</div>
+		<div class="nextbtn">></div>
+		<div class="grid">
+			<div class="list">
+				<form>
+					<input type="text" placeholder="Search..." id="searchinput" />
+				</form>
+				<div class="list-container"></div>
+			</div>
+			<div class="character-info">
+				<div class="img">
+					<img
+						src="https://lumiere-a.akamaihd.net/v1/images/luke-skywalker-main_fb34a1ff.jpeg"
+						alt=""
+					/>
+				</div>
+				<div class="content">
+					<h3 class="name">Luke Skywalker</h3>
+					<ul class="info">
+						<li>Height: <span>172cm</span></li>
+						<li>Mass: <span>77cm</span></li>
+						<li>Hair color: <span>Blond</span></li>
+						<li>Skin color: <span>Fair</span></li>
+						<li>Eye color: <span>Blue</span></li>
+						<li>Birth year: <span>1982</span></li>
+						<li>Gender: <span>Male</span></li>
+					</ul>
+					<div class="from">
+						<h3 class="planet"><span>From:</span> Tatooine</h3>
+						<ul class="planetinfo">
+							<li>Rotation period: <span>23</span></li>
+							<li>Orbital period: <span>304</span></li>
+							<li>Diameter: <span>10465</span></li>
+							<li>Climate: <span>Arid</span></li>
+							<li>Gravity: <span>1 standard</span></li>
+							<li>Terrain: <span>Desert</span></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div
+			class="backimage"
+			id="backimage"
+			style="
+				background-image: url('https://lumiere-a.akamaihd.net/v1/images/tatooine-main_9542b896.jpeg');
+			"
+		></div>
 		<script src="index.js"></script>
 	</body>
 </html>

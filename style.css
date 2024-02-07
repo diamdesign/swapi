@@ -2,10 +2,233 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	user-select: none;
 }
 
 html,
 body {
 	width: 100%;
 	height: 100%;
+}
+
+body {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	background: black;
+	color: #ffe81f;
+	font-family: "Archivo", sans-serif;
+}
+
+.logo {
+	margin-top: 40px;
+	text-align: center;
+	position: relative;
+	margin-bottom: 40px;
+	font-weight: 900;
+	filter: drop-shadow(0 0 8px rgba(255, 255, 0, 0.49))
+		drop-shadow(0 0 64px rgba(255, 255, 0, 0.561));
+}
+
+.logo h1 {
+	font-family: "Bebas Neue", sans-serif;
+
+	font-size: 100px;
+	margin: 0;
+	padding: 0;
+}
+.logo h1:nth-child(2) {
+	top: -45px;
+	font-size: 90px;
+	position: relative;
+}
+
+.logo h2 {
+	position: relative;
+	top: -70px;
+	font-size: 50px;
+}
+
+.grid {
+	grid-gap: 20px;
+	width: 70%;
+	display: grid;
+	grid-template-columns: 3fr 6fr;
+	position: relative;
+	top: -60px;
+}
+
+.nextbtn,
+.prevbtn {
+	position: absolute;
+	content: "";
+	top: 50%;
+	padding: 30px;
+	font-size: 32px;
+	font-weight: 900;
+	display: block;
+	background: rgba(255, 255, 0, 0.132);
+	box-shadow: 0 0 8px 0 yellow inset, 0 0 24px 0 rgba(255, 255, 0, 0.219),
+		0 0 8px 0 rgba(255, 255, 0, 0.314);
+}
+
+.nextbtn:hover,
+.prevbtn:hover {
+	background: rgba(255, 255, 0, 0.432);
+	box-shadow: 0 0 16px 0 yellow inset, 0 0 24px 0 rgba(255, 255, 0, 0.219),
+		0 0 8px 0 rgba(255, 255, 0, 0.314);
+	color: white;
+	cursor: pointer;
+}
+
+.nextbtn {
+	right: 40px;
+}
+
+.prevbtn {
+	left: 40px;
+}
+
+.list,
+.character-info {
+	position: relative;
+	overflow-y: auto;
+	max-height: 60vh;
+	background: rgba(255, 255, 0, 0.232);
+	box-shadow: 0 0 8px 0 yellow inset, 0 0 24px 0 rgba(255, 255, 0, 0.219),
+		0 0 8px 0 rgba(255, 255, 0, 0.314);
+}
+
+.list {
+	overflow-y: hidden;
+	padding-top: 64px;
+	height: 100%;
+}
+
+.list-container {
+	height: 100%;
+	overflow-y: auto;
+}
+.character-info {
+	display: grid;
+	grid-template-columns: 3fr 3fr;
+	overflow-y: hidden;
+}
+.list-item,
+form input {
+	color: yellow;
+	font-size: 21px;
+	font-weight: bold;
+	padding: 20px;
+	background: rgba(255, 255, 0, 0.132);
+	box-shadow: 0 0 8px 0 yellow inset;
+}
+
+form input {
+	border: none;
+	outline: none;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	color: black;
+	background: rgba(255, 255, 255, 0.502);
+}
+.list-item:hover {
+	background: rgba(255, 255, 0, 0.432);
+	color: white;
+	cursor: pointer;
+}
+
+.active {
+	background: rgba(255, 255, 0, 0.432);
+	color: white;
+}
+
+.content {
+	overflow-y: auto;
+}
+.character-info .img {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.character-info .img img {
+	height: 100%;
+	left: 50%;
+	transform: translateX(-50%);
+	object-fit: cover;
+	position: relative;
+}
+
+.character-info h3 {
+	color: white;
+	font-size: 28px;
+	padding: 10px 20px;
+}
+
+.info li,
+.from li {
+	padding: 9.2px 20px;
+	border-bottom: 1px solid yellow;
+}
+.info span,
+.from span {
+	color: white;
+}
+
+.planet span {
+	font-weight: 200;
+	color: yellow;
+}
+
+.backimage {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-position: center center;
+	background-repeat: no-repeat;
+	z-index: -1;
+	background-size: cover;
+	opacity: 0.5;
+}
+
+/* Firefox */
+* {
+	scrollbar-width: thin;
+	scrollbar-color: yellow transparent;
+}
+
+/* Chrome, Edge and Safari */
+*::-webkit-scrollbar {
+	height: 10px;
+	width: 10px;
+}
+*::-webkit-scrollbar-track {
+	border-radius: 5px;
+	background-color: transparent;
+}
+
+*::-webkit-scrollbar-track:hover {
+	background-color: transparent;
+}
+
+*::-webkit-scrollbar-track:active {
+	background-color: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+	border-radius: 5px;
+	background-color: yellow;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+	background-color: yellow;
+}
+
+*::-webkit-scrollbar-thumb:active {
+	background-color: yellow;
 }

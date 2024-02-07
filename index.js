@@ -119,6 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <li>Diameter: <span>${data2.diameter}</span></li>
                 <li>Climate: <span>${capFirst(data2.climate)}</span></li>
                 <li>Gravity: <span>${data2.gravity}</span></li>
+                <li>Population: <span>${data2.population}</span></li>
                 <li>Terrain: <span>${capFirst(data2.terrain)}</span></li>
             </ul>
         </div>`;

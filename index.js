@@ -9,8 +9,8 @@ document.addEventListener("DOMContentLoaded", function () {
 	let allArray = [];
 	let allPeople = [];
 	let swapiArray = [];
-	let currentId = 10;
-	let orderId = 2;
+	let currentId = 0;
+	let orderId = 0;
 
 	async function fetchAllPeople() {
 		allArray = JSON.parse(localStorage.getItem("SWAPI")) || []; // Provide default value if null

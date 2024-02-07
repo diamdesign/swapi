@@ -65,8 +65,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	async function getExtra(name, from) {
 		let nameinput = name.replace(/ /g, "%20");
-
+		let homeworld = allArray[currentId].homeworld;
 		console.log(currentId);
+
 		let nameurl =
 			"https://starwars-databank-server.vercel.app/api/v1/characters/name/" + nameinput;
 
@@ -80,6 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 			const response3 = await fetch(fromurl);
 			const data3 = await response3.json();
+
 			console.log(data, data2, data3);
 
 			const backgroundImage = data3[0]?.image; // Using optional chaining to safely access image property
@@ -98,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
         />
     </div>
     <div class="content">
-        <h3 class="name">${allArray[currentId].name}</h3>
+        <h3 class="name">${name}</h3>
         <ul class="info">
             <li><span>${data[0]?.description || ""}</span></li>
             <li>Height: <span>${allArray[currentId].height}cm</span></li>
@@ -110,18 +112,38 @@ document.addEventListener("DOMContentLoaded", function () {
             <li>Gender: <span>${capFirst(allArray[currentId].gender)}</span></li>
         </ul>
         <div class="from">
-            <h3 class="planet"><span>From:</span> Tatooine</h3>
+            <h3 class="planet"><span>From:</span> ${data2.name}</h3>
             <ul class="planetinfo">
-                <li>Rotation period: <span>23</span></li>
-                <li>Orbital period: <span>304</span></li>
-                <li>Diameter: <span>10465</span></li>
-                <li>Climate: <span>Arid</span></li>
-                <li>Gravity: <span>1 standard</span></li>
-                <li>Terrain: <span>Desert</span></li>
+                <li>Rotation period: <span>${data2.rotation_period}</span></li>
+                <li>Orbital period: <span>${data2.orbital_period}</span></li>
+                <li>Diameter: <span>${data2.diameter}</span></li>
+                <li>Climate: <span>${capFirst(data2.climate)}</span></li>
+                <li>Gravity: <span>${data2.gravity}</span></li>
+                <li>Terrain: <span>${capFirst(data2.terrain)}</span></li>
             </ul>
         </div>`;
 			const characterInfo = document.querySelector(".character-info");
 			characterInfo.innerHTML = html;
+
+			const container = document.querySelector(".img");
+			const image = container.querySelector("img");
+
+			container.addEventListener("mousemove", function (event) {
+				// Calculate the position of the mouse relative to the container
+				const mouseX = event.clientX - container.getBoundingClientRect().left;
+				const containerWidth = container.offsetWidth;
+
+				// Calculate the percentage position of the mouse within the container
+				const percentageX = (mouseX / containerWidth) * 100;
+
+				// Set the left position of the image based on the mouse position
+				image.style.left = `${percentageX}%`; // Set the left position directly based on the mouse position
+			});
+
+			// Reset image position when mouse leaves the container
+			container.addEventListener("mouseleave", function () {
+				image.style.left = "50%"; // Reset to the initial left position
+			});
 		} catch (error) {
 			console.error("Error fetching extra:", error);
 		}
@@ -202,7 +224,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		const dataId = dataIdMatch[1];
 		console.log(dataId - 1);
 
-		getExtra(person.name, person.homeworld);
+		getExtra(name, person.homeworld);
 	}
 
 	const nextButton = document.querySelector(".nextbtn");
@@ -221,7 +243,8 @@ document.addEventListener("DOMContentLoaded", function () {
 		if (activeItem) {
 			const nextItem = activeItem.nextElementSibling;
 			if (nextItem) {
-				setActive(nextItem.dataset.id);
+				currentId = nextItem.dataset.id;
+				setActive(currentId);
 			} else {
 				setActive(document.querySelector(".list-item:first-child").dataset.id);
 			}
@@ -233,7 +256,8 @@ document.addEventListener("DOMContentLoaded", function () {
 		if (activeItem) {
 			const prevItem = activeItem.previousElementSibling;
 			if (prevItem) {
-				setActive(prevItem.dataset.id);
+				currentId = prevItem.dataset.id;
+				setActive(currentId);
 			} else {
 				setActive(document.querySelector(".list-item:last-child").dataset.id);
 			}

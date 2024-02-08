@@ -67,7 +67,8 @@ document.addEventListener("DOMContentLoaded", function () {
 		let nameinput = name.replace(/ /g, "%20");
 		let homeworld = allArray[currentId].homeworld;
 		console.log(currentId);
-
+		const characterHTML = document.querySelector(".character-info");
+		characterHTML.innerHTML = '<div class="loader"></div>';
 		let nameurl =
 			"https://starwars-databank-server.vercel.app/api/v1/characters/name/" + nameinput;
 

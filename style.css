@@ -152,12 +152,16 @@ form input {
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
-	background: rgba(0, 0, 0, 0.5);
+	background-color: rgba(0, 0, 0, 0.5);
 }
 
 .character-info .img img {
-	width: 100%;
+	display: block;
+	min-width: 100%;
 	left: 50%;
+	max-width: 110%;
+	max-height: 140%;
+	top: 0;
 	transform: translateX(-50%);
 	object-fit: cover;
 	position: relative;
@@ -233,4 +237,22 @@ form input {
 
 *::-webkit-scrollbar-thumb:active {
 	background-color: yellow;
+}
+
+.loader {
+	display: block;
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+	width: 64px;
+	height: 64px;
+	background-image: url("loader.gif");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	z-index: 100;
+}
+.off {
+	display: none;
 }

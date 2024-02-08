@@ -112,7 +112,7 @@ body {
 }
 .character-info {
 	display: grid;
-	grid-template-columns: 3fr 3fr;
+	grid-template-rows: 3fr 3fr;
 	overflow-y: hidden;
 }
 .list-item,
@@ -156,7 +156,7 @@ form input {
 }
 
 .character-info .img img {
-	min-height: 100%;
+	width: 100%;
 	left: 50%;
 	transform: translateX(-50%);
 	object-fit: cover;

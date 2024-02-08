@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
         </div>`;
 			const characterInfo = document.querySelector(".character-info");
 			characterInfo.innerHTML = html;
-
+			/*
 			const container = document.querySelector(".img");
 			const image = container.querySelector("img");
 
@@ -145,6 +145,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			container.addEventListener("mouseleave", function () {
 				image.style.left = "50%"; // Reset to the initial left position
 			});
+            */
 		} catch (error) {
 			console.error("Error fetching extra:", error);
 		}
